@@ -12,6 +12,5 @@ CHIP Not {
     IN in;
     OUT out;
 
-    PARTS:
-    // Put your code here:
+    BUILTIN Not;
 }

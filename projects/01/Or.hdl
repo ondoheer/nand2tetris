@@ -13,6 +13,5 @@ CHIP Or {
     IN a, b;
     OUT out;
 
-    PARTS:
-    // Put your code here:
+    BUILTIN Or;
 }
