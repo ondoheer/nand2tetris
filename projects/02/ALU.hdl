@@ -64,6 +64,12 @@ CHIP ALU {
     Not16(in=prelim, out=notPrelim);
     Mux16(a=prelim, b=notPrelim, sel=no, out[0..7]=left, out[8..15]=right, out[15]=ng, out=out);
 
+    // now for the zr, ng part (I DON?T KNOW HOW TO DO THIS!)
+    Or8Way(in=left, out=orLeft);
+    Or8Way(in=right, out=orRight);
+
+    Or(a=orLeft, b=orRight, out=temp);
+    Not(in=temp, out=zr);
 
 
 }
