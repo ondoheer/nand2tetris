@@ -17,4 +17,17 @@ CHIP PC {
 
     PARTS:
     // Put your code here:
+    Or8Way(in[0]=reset, in[1]=inc, in[2]=load, out=shouldLoad);
+    Register(in=registerIn, load=shouldLoad, out=registerOut, out=out);
+    Inc16(in=registerOut, out=incremented);
+    /*
+      Selector values mapped to registerIn 
+      000 a: previous value (registerOut)
+      001 b: incremented value
+      010 c: load
+      011 d: ambiguous, but prefer load over inc per test cases
+      100 e: reset (implied zero by not connecting it)
+      ... f-h unused
+    */
+    Mux8Way16(a=registerOut, b=incremented, c=in, d=in, sel[0]=inc, sel[1]=load, sel[2]=reset, out=registerIn);
 }
