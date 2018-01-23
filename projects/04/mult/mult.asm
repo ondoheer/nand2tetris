@@ -7,3 +7,27 @@
 // (R0, R1, R2 refer to RAM[0], RAM[1], and RAM[2], respectively.)
 
 // Put your code here.
+
+@R2 
+M=0       // set the initial product equal to 0
+@R1       // get the multiplier
+D=M       // and put it in D
+@COUNTER
+M=D       // `COUNTER` will count down the number of additions we have to do
+
+(LOOP)
+	@COUNTER
+	D=M    // load the COUNTER value into D
+	@END
+	D;JEQ  // if the counter is 0, we're done
+	@R0 
+	D=M    // put the multiplier value into D
+	@R2
+	M=M+D  // and add it to R2
+	@COUNTER
+	M=M-1  // decrement the counter
+	@LOOP
+	0;JMP  // and loop infinitely
+(END)
+	@END
+	0;JMP  // this is the explicit way to stop a script
